@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Uploads (VERY IMPORTANT)
+uploads/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
