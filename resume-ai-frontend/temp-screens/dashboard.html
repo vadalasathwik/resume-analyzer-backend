@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResumeAI Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#fef2f2",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-fixed": "#00174b",
+                    "on-tertiary-container": "#bdffdb",
+                    "surface-container-low": "#f8fafc",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f8fafc",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-container": "#f1f5f9",
+                    "on-surface-variant": "#64748b",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#dbe1ff",
+                    "error": "#ef4444",
+                    "secondary": "#475569",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "outline": "#cbd5e1",
+                    "surface-tint": "#2563eb",
+                    "background": "#f8fafc",
+                    "on-secondary-container": "#1e293b",
+                    "outline-variant": "#e2e8f0",
+                    "on-background": "#0f172a",
+                    "on-primary-container": "#ffffff",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-surface": "#0f172a",
+                    "surface-bright": "#ffffff",
+                    "tertiary-container": "#ecfdf5",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#f1f5f9",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#991b1b",
+                    "primary-container": "#2563eb",
+                    "surface-dim": "#e2e8f0",
+                    "primary": "#2563eb",
+                    "surface-variant": "#f1f5f9",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "inverse-surface": "#0f172a",
+                    "inverse-primary": "#b4c5ff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#f1f5f9",
+                    "tertiary": "#10b981",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-container-highest": "#e2e8f0",
+                    "surface-container-high": "#f1f5f9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "0.75rem",
+                    "xl": "1rem",
+                    "2xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .primary-gradient { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); }
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%); 
+            -webkit-backdrop-filter: blur(20px) saturate(180%); 
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.08); 
+        }
+        .btn-hover { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-hover:active { transform: scale(0.96); }
+        .progress-ring { transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .drop-zone-glow { transition: all 0.3s ease; }
+        .drop-zone-glow:hover { 
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.1); 
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+        .chip-refined {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .chip-refined:hover {
+            background-color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body selection:bg-primary/10 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav border-b border-slate-200/40">
+<div class="flex items-center justify-between px-6 py-4 max-w-[1600px] mx-auto">
+<!-- Brand Logo -->
+<div class="flex items-center gap-3">
+<div class="h-9 w-9 primary-gradient rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-xl">auto_awesome</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-slate-900">ResumeAI</span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-2 font-sans text-sm font-semibold">
+<a class="px-5 py-2 text-primary bg-primary/10 rounded-full btn-hover" href="#">Dashboard</a>
+<a class="px-5 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-full transition-all btn-hover" href="#">Candidates</a>
+<a class="px-5 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-full transition-all btn-hover" href="#">Analytics</a>
+<a class="px-5 py-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-full transition-all btn-hover" href="#">Settings</a>
+</div>
+<!-- Search and Profile -->
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-slate-100/50 border border-transparent rounded-full py-2.5 pl-11 pr-5 text-sm focus:ring-4 focus:ring-primary/10 focus:bg-white focus:border-slate-200 w-72 outline-none transition-all placeholder:text-slate-400 font-medium" placeholder="Search insights..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="h-11 w-11 flex items-center justify-center rounded-full hover:bg-slate-100 transition-all text-slate-500 btn-hover">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-11 w-11 rounded-full overflow-hidden ring-2 ring-slate-100/50 cursor-pointer hover:ring-primary/30 transition-all btn-hover shadow-sm">
+<img alt="User Profile Avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjwguoNFsp0SSGqq4zcgkpEtGwkZPEikDlhAGwfJD2ssbqySQiHS7B33U-IaLa_3L6OS5SQzqfx1ZWEnWPa-x9PCDDhNEdImUdJqrDXVTQQqhmWso7gA05GVQiWmSZMoueAPnXym-FvmTMm0kdnNPClMAvOgYcD5z1yVM_kkGMGhMRPKqXB69mJI4H8EIiukmIv9lMWSLj_41oAnBZtm4GhmYIRM0KSkNPRHao7j083xdmqppc5DYJ2VlED8l2YQUhibZRMfO9PhY"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-28 px-6 pb-16 max-w-[1600px] mx-auto space-y-10">
+<!-- Header Section -->
+<header class="flex flex-col gap-2">
+<h1 class="text-4xl font-extrabold tracking-tight text-slate-900">Dashboard</h1>
+<p class="text-slate-500 text-base">Welcome back, Curator. You have <span class="text-primary font-bold">12 new resumes</span> to analyze today.</p>
+</header>
+<!-- Analyze Resumes Bento Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Upload Area -->
+<div class="lg:col-span-4 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60 flex flex-col justify-between card-hover">
+<div>
+<h3 class="text-base font-bold mb-6 text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">upload_file</span>
+                        Analyze Resumes
+                    </h3>
+<div class="border-2 border-dashed border-slate-200 rounded-xl p-10 flex flex-col items-center justify-center bg-slate-50 drop-zone-glow cursor-pointer group">
+<div class="h-14 w-14 rounded-2xl bg-white shadow-md flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">cloud_upload</span>
+</div>
+<p class="text-sm font-bold text-slate-900 text-center">Drag &amp; drop resume files here</p>
+<p class="text-[11px] font-medium text-slate-400 mt-2 uppercase tracking-wider">Supports PDF, DOCX (Max 10MB)</p>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-4">Pending Files</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-3 bg-slate-50/80 border border-slate-100 rounded-xl p-3.5 group hover:bg-white hover:shadow-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-xl">description</span>
+<span class="flex-1 truncate text-sm font-semibold text-slate-700">software_engineer_v2.pdf</span>
+<button class="material-symbols-outlined text-lg text-slate-300 hover:text-error transition-colors btn-hover">close</button>
+</div>
+<div class="flex items-center gap-3 bg-slate-50/80 border border-slate-100 rounded-xl p-3.5 group hover:bg-white hover:shadow-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary text-xl">description</span>
+<span class="flex-1 truncate text-sm font-semibold text-slate-700">marketing_lead_final.docx</span>
+<button class="material-symbols-outlined text-lg text-slate-300 hover:text-error transition-colors btn-hover">close</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Job Description Area -->
+<div class="lg:col-span-8 bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60 flex flex-col card-hover">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-base font-bold text-slate-900">Paste Job Description</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all btn-hover">Import from Jira</button>
+<button class="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all btn-hover">Select Template</button>
+</div>
+</div>
+<textarea class="flex-1 w-full bg-slate-50/50 border border-slate-200 rounded-2xl p-6 text-sm text-slate-700 placeholder:text-slate-400 focus:ring-4 focus:ring-primary/10 focus:border-primary/30 focus:bg-white outline-none min-h-[250px] mb-6 transition-all resize-none leading-relaxed" placeholder="Describe the ideal candidate's roles, responsibilities, and required skill sets..."></textarea>
+<div class="flex justify-end">
+<button class="primary-gradient text-white px-10 py-4 rounded-xl font-bold flex items-center gap-3 btn-hover shadow-lg shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40">
+                        Analyze Resumes
+                        <span class="material-symbols-outlined text-xl">auto_awesome</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Results Section Header -->
+<section class="space-y-8">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-3">
+                    Analysis Results
+                    <span class="bg-primary/10 text-primary text-[11px] px-3 py-1 rounded-full uppercase tracking-widest font-bold border border-primary/10">AI Powered</span>
+</h2>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
+<span>Sort by:</span>
+<button class="font-bold text-slate-900 flex items-center gap-1 hover:text-primary transition-colors btn-hover">
+                            Highest Match
+                            <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<button class="material-symbols-outlined p-2.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all btn-hover border border-transparent hover:border-slate-200">filter_list</button>
+</div>
+</div>
+<!-- Candidate Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Candidate Card 1 -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60 card-hover flex flex-col group/card">
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center gap-4">
+<div class="h-14 w-14 rounded-2xl bg-slate-50 flex items-center justify-center text-primary border border-slate-100 group-hover/card:bg-white group-hover/card:shadow-md transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 text-lg leading-tight">Alex Thompson</h4>
+<p class="text-xs text-slate-400 mt-1 font-medium truncate w-32">alex_t_resume.pdf</p>
+</div>
+</div>
+<!-- ATS Score UI -->
+<div class="flex flex-col items-center gap-1.5">
+<div class="relative h-12 w-12">
+<svg class="h-full w-full rotate-[-90deg]" viewbox="0 0 36 36">
+<circle class="stroke-slate-100" cx="18" cy="18" fill="none" r="16" stroke-width="3.5"></circle>
+<circle class="stroke-tertiary progress-ring" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="6" stroke-linecap="round" stroke-width="3.5"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[11px] font-extrabold text-slate-900">94%</span>
+</div>
+<span class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Excellent</span>
+</div>
+</div>
+<div class="space-y-6 flex-1">
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Top Matching Skills</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">React Native</span>
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">TypeScript</span>
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">AWS Arch</span>
+<span class="px-2 py-1.5 text-slate-400 text-xs font-bold">+4</span>
+</div>
+</div>
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Gaps Found</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold border border-red-100/50">GraphQL</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-10 py-4 bg-slate-900 text-white font-bold text-sm rounded-xl hover:bg-primary transition-all btn-hover shadow-md hover:shadow-lg hover:shadow-primary/20">View Deep Analysis</button>
+</div>
+<!-- Candidate Card 2 -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60 card-hover flex flex-col group/card">
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center gap-4">
+<div class="h-14 w-14 rounded-2xl bg-slate-50 flex items-center justify-center text-blue-500 border border-slate-100 group-hover/card:bg-white group-hover/card:shadow-md transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">description</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 text-lg leading-tight">Sarah Jenkins</h4>
+<p class="text-xs text-slate-400 mt-1 font-medium truncate w-32">sarah_j_ux_final.docx</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1.5">
+<div class="relative h-12 w-12">
+<svg class="h-full w-full rotate-[-90deg]" viewbox="0 0 36 36">
+<circle class="stroke-slate-100" cx="18" cy="18" fill="none" r="16" stroke-width="3.5"></circle>
+<circle class="stroke-amber-500 progress-ring" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="22" stroke-linecap="round" stroke-width="3.5"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[11px] font-extrabold text-slate-900">78%</span>
+</div>
+<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider">Strong</span>
+</div>
+</div>
+<div class="space-y-6 flex-1">
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Top Matching Skills</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">Figma</span>
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">Prototyping</span>
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">Research</span>
+</div>
+</div>
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Gaps Found</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold border border-red-100/50">Tailwind CSS</span>
+<span class="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold border border-red-100/50">Next.js</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-10 py-4 bg-slate-900 text-white font-bold text-sm rounded-xl hover:bg-primary transition-all btn-hover shadow-md hover:shadow-lg hover:shadow-primary/20">View Deep Analysis</button>
+</div>
+<!-- Candidate Card 3 -->
+<div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60 card-hover flex flex-col opacity-95 grayscale-[0.1] group/card">
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center gap-4">
+<div class="h-14 w-14 rounded-2xl bg-slate-50 flex items-center justify-center text-primary border border-slate-100 group-hover/card:bg-white group-hover/card:shadow-md transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 text-lg leading-tight">Michael Zhao</h4>
+<p class="text-xs text-slate-400 mt-1 font-medium truncate w-32">m_zhao_dev.pdf</p>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1.5">
+<div class="relative h-12 w-12">
+<svg class="h-full w-full rotate-[-90deg]" viewbox="0 0 36 36">
+<circle class="stroke-slate-100" cx="18" cy="18" fill="none" r="16" stroke-width="3.5"></circle>
+<circle class="stroke-error progress-ring" cx="18" cy="18" fill="none" r="16" stroke-dasharray="100" stroke-dashoffset="58" stroke-linecap="round" stroke-width="3.5"></circle>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[11px] font-extrabold text-slate-900">42%</span>
+</div>
+<span class="text-[10px] font-bold text-error uppercase tracking-wider">Low Match</span>
+</div>
+</div>
+<div class="space-y-6 flex-1">
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Top Matching Skills</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">Python</span>
+<span class="px-3 py-1.5 chip-refined rounded-lg text-xs">Django</span>
+</div>
+</div>
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Gaps Found</h5>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold border border-red-100/50">JavaScript</span>
+<span class="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg text-xs font-bold border border-red-100/50">SQL</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-10 py-4 bg-slate-900 text-white font-bold text-sm rounded-xl hover:bg-primary transition-all btn-hover shadow-md hover:shadow-lg hover:shadow-primary/20">View Deep Analysis</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Insight Rail (Contextual Overlay) -->
+<aside class="hidden xl:flex fixed right-0 top-0 bottom-0 w-[400px] bg-white border-l border-slate-200/40 p-8 flex-col gap-10 shadow-[-20px_0px_60px_rgba(15,23,42,0.02)] pt-28">
+<div class="flex flex-col gap-3">
+<h3 class="text-xl font-extrabold tracking-tight text-slate-900">AI Curator Insights</h3>
+<p class="text-sm text-slate-500 leading-relaxed font-medium">Real-time intelligence dashboard for optimized hiring decisions.</p>
+</div>
+<div class="bg-slate-50/80 rounded-2xl p-6 border border-slate-100/50 space-y-5 shadow-sm">
+<div class="flex items-center gap-3">
+<div class="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+</div>
+<span class="text-[11px] font-bold uppercase tracking-widest text-slate-400">Market Intelligence</span>
+</div>
+<p class="text-[13px] font-semibold leading-relaxed text-slate-700">
+                Current candidates excel in <span class="text-primary">AWS cloud management</span>, but <span class="text-error">Kubernetes orchestration</span> remains a critical skill gap in 85% of your pool.
+            </p>
+</div>
+<div class="flex-1 flex flex-col justify-end pb-8">
+<div class="p-8 bg-slate-900 text-white rounded-[2rem] relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="text-lg font-bold mb-3">Automate Screening?</h4>
+<p class="text-xs text-slate-400 mb-8 leading-relaxed font-medium">Enable AI to automatically dispatch interview invites to candidates exceeding a 90% match threshold.</p>
+<button class="w-full bg-white text-slate-900 px-6 py-4 rounded-2xl text-xs font-extrabold hover:bg-primary hover:text-white transition-all btn-hover shadow-xl shadow-white/5">Enable Auto-Pilot</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[180px] opacity-[0.05] pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-all duration-1000">robot_2</span>
+</div>
+</div>
+</aside>
+</body></html>

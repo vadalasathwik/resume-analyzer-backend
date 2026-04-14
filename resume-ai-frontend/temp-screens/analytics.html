@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResumeAI Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-fixed": "#00174b",
+                        "on-tertiary-container": "#bdffdb",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#434655",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "error": "#ba1a1a",
+                        "secondary": "#505f76",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "outline": "#737686",
+                        "surface-tint": "#0053db",
+                        "background": "#f7f9fb",
+                        "on-secondary-container": "#54647a",
+                        "outline-variant": "#c3c6d7",
+                        "on-background": "#191c1e",
+                        "on-primary-container": "#eeefff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-surface": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary-container": "#007d55",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#d0e1fb",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2563eb",
+                        "surface-dim": "#d8dadc",
+                        "primary": "#004ac6",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-surface": "#2d3133",
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "tertiary": "#006242",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopNavBar Header -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-[0px_20px_40px_rgba(37,99,235,0.05)]">
+<nav class="flex items-center justify-between px-8 py-4 max-w-full mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50">ResumeAI</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-sans text-sm font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 ease-in-out active:scale-95 duration-100" href="#">Dashboard</a>
+<a class="font-sans text-sm font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 ease-in-out active:scale-95 duration-100" href="#">Candidates</a>
+<a class="font-sans text-sm font-medium tracking-tight text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 pb-1 transition-colors duration-200 ease-in-out active:scale-95 duration-100" href="#">Analytics</a>
+<a class="font-sans text-sm font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200 ease-in-out active:scale-95 duration-100" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container w-64" placeholder="Search analytics..." type="text"/>
+</div>
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/10" data-alt="Professional headshot of a smiling male executive in a blue shirt with soft studio lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR9widCvWCvnRW7FapUUCS1b1RvCyEn3nSMixyluMoepQyn1mWnc5Sl3_FW9xybwXD4P20yrxQLnkydmUqClvKUekra876dOq95sVJF88LQZMRuwUCHnfxA-wvgS9YBKtSWCBEd1eor_jYjZDUmfD4KzLrCVmSaEkpA_Rv9vmnxIFqOzkdYR6En6Hfk_NqhdSpEEOuoCRSb9chAT8A0jf8OvaWZulcWEOCzUIj1G--DCx7qZPZThZj1iCSxWgRTpM1Oh45fOgqqSg"/>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-12 px-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="mb-10">
+<h1 class="text-3xl font-extrabold tracking-tight text-on-surface mb-2">Recruitment Insights</h1>
+<p class="text-on-surface-variant font-medium">Real-time performance metrics for your talent pipeline.</p>
+</div>
+<!-- Bento Grid Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,74,198,0.03)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" data-icon="description">description</span>
+</div>
+<div class="relative z-10">
+<span class="text-xs font-bold tracking-widest text-outline uppercase mb-4 block">Total Resumes</span>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-extrabold text-on-surface leading-none">1,284</span>
+<span class="text-tertiary font-bold text-sm flex items-center mb-1">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span>
+                            +12%
+                        </span>
+</div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,74,198,0.03)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" data-icon="leaderboard">leaderboard</span>
+</div>
+<div class="relative z-10">
+<span class="text-xs font-bold tracking-widest text-outline uppercase mb-4 block">Average Score</span>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-extrabold text-on-surface leading-none">74.2</span>
+<span class="text-outline font-bold text-sm flex items-center mb-1">/ 100</span>
+</div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,74,198,0.03)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary" data-icon="grade">grade</span>
+</div>
+<div class="relative z-10">
+<span class="text-xs font-bold tracking-widest text-outline uppercase mb-4 block">Top Candidate Score</span>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-extrabold text-on-surface leading-none">98.5</span>
+<span class="bg-tertiary-container/20 text-tertiary-fixed-dim px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter mb-1.5 ml-1">Elite</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Visualization Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Large Chart Card -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_20px_40px_rgba(0,74,198,0.03)]">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-lg font-bold text-on-surface">Candidate Volume Trends</h3>
+<p class="text-sm text-on-surface-variant">Weekly submission frequency</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-surface-container-high text-on-surface">7D</button>
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-primary-container text-on-primary-container">30D</button>
+<button class="px-3 py-1.5 text-xs font-bold rounded-lg bg-surface-container-high text-on-surface">90D</button>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="h-64 flex items-end justify-between gap-4">
+<div class="flex-1 bg-primary/5 rounded-t-lg relative group h-1/3">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Mon: 120</div>
+</div>
+<div class="flex-1 bg-primary/10 rounded-t-lg relative group h-1/2"></div>
+<div class="flex-1 bg-primary/15 rounded-t-lg relative group h-2/3"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg relative group h-4/5"></div>
+<div class="flex-1 bg-primary-container rounded-t-lg relative group h-[90%]">
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-100 whitespace-nowrap">Fri: 342</div>
+</div>
+<div class="flex-1 bg-primary/25 rounded-t-lg relative group h-3/4"></div>
+<div class="flex-1 bg-primary/20 rounded-t-lg relative group h-1/2"></div>
+</div>
+<div class="flex justify-between mt-4 px-1">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Mon</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Tue</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Wed</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Thu</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Fri</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Sat</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Sun</span>
+</div>
+</div>
+<!-- Side Insight Rail -->
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col gap-6">
+<div>
+<h3 class="text-sm font-bold tracking-tight text-on-surface mb-1">AI Talent Scoring</h3>
+<p class="text-xs text-on-surface-variant">Top-rated skills across your pipeline</p>
+</div>
+<div class="space-y-4">
+<!-- Skill Progress -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-on-surface">Python &amp; Data Science</span>
+<span class="text-tertiary font-bold">89%</span>
+</div>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[89%] bg-gradient-to-r from-primary to-primary-container rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-on-surface">UI/UX Design</span>
+<span class="text-tertiary font-bold">72%</span>
+</div>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[72%] bg-gradient-to-r from-primary to-primary-container rounded-full"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-on-surface">Project Management</span>
+<span class="text-tertiary font-bold">64%</span>
+</div>
+<div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full w-[64%] bg-gradient-to-r from-primary to-primary-container rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-auto bg-surface-container-lowest p-4 rounded-lg border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-xs font-bold text-on-surface">AI Recommendation</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                        Based on your trend, focus on hiring for <span class="font-bold text-on-surface">Frontend Engineering</span> roles. Application quality has peaked in this sector over the last 14 days.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Lower Grid Section -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Distribution Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,74,198,0.03)] col-span-1 lg:col-span-2">
+<h3 class="text-sm font-bold text-on-surface mb-6">Pipeline Distribution</h3>
+<div class="flex items-center gap-8 h-40">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="64" cy="64" fill="transparent" r="50" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="64" cy="64" fill="transparent" r="50" stroke="currentColor" stroke-dasharray="314" stroke-dashoffset="120" stroke-width="12"></circle>
+<circle class="text-tertiary" cx="64" cy="64" fill="transparent" r="50" stroke="currentColor" stroke-dasharray="314" stroke-dashoffset="250" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-extrabold">1.2k</span>
+<span class="text-[8px] font-bold text-outline uppercase">Total</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+<span class="text-xs font-medium text-on-surface-variant">Interviewing (42%)</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-sm bg-tertiary"></div>
+<span class="text-xs font-medium text-on-surface-variant">Screened (35%)</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-sm bg-surface-container-highest"></div>
+<span class="text-xs font-medium text-on-surface-variant">New (23%)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent High Scorers -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,74,198,0.03)] col-span-1 lg:col-span-2">
+<h3 class="text-sm font-bold text-on-surface mb-4">Top Talent This Week</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-3">
+<img alt="Candidate Headshot" class="w-10 h-10 rounded-full object-cover" data-alt="Modern professional headshot of a young woman with a warm smile, corporate setting blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjxPaqcgClR4-ZtO_fHQir-ID1MGWcDEzTaiZdDfVeTXQ5j6rQLQoD5ipdCPWUcqc7byxksY8LKX4nQB4ovvJEN9bVNPc8MxBMLm6CpsceW8AodXmsqlzbRORDp5gesywZJZuX1AqZcyOR5D6SWtCsfmA2B6xqS8fDBC4hmRUms0nOEPeKeyZj8Nlq89wuWkuIFMBOMVfyN9P_Bq4PYsdefnSWuJlFaALOdDYvgKaE4Di9VZ_nm9z701xwglGyit9uviqvGxE-3Zg"/>
+<div>
+<span class="text-sm font-bold block text-on-surface">Sarah Jenkins</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Senior UX Designer</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-sm font-extrabold text-primary">98.2</span>
+<span class="block text-[8px] font-bold text-tertiary uppercase">Match</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<img alt="Candidate Headshot" class="w-10 h-10 rounded-full object-cover" data-alt="Close-up portrait of a male professional with glasses, intelligent expression, softly lit office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDukUjGbS4jjODN2u0aaNxUplvFeuZ9aCsGYGxCZa59Bw5heOrlpLfrqeU1YdPuTPWjZd9PtoDP06GU5RpZBm2l9lfmUqOERAYhuMRZSJKywlyfQ03Dp7WYK7XkBKag_OKcIo_7-Zb51x6MshtC5ux2AJct0AIVNi1CdYuS45QsP_U4Fzn_o3op-57ieKoCObyEv5cyvkUsAHneyPkHvuww-NFOHUZDJzLCfKXRbCVkPLwBRtRb2G4tziD5KWma6j09GTGFJLLUUZY"/>
+<div>
+<span class="text-sm font-bold block text-on-surface">Marcus Thorne</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Cloud Architect</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-sm font-extrabold text-primary">96.5</span>
+<span class="block text-[8px] font-bold text-tertiary uppercase">Match</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB - suppressed on Analytics page as per rules -->
+</body></html>
