@@ -12,9 +12,10 @@ from app.services.scorer import calculate_score, keyword_match, find_missing
 
 router = APIRouter()
 
-UPLOAD_DIR = "uploads/resumes"
+UPLOAD_DIR = os.getenv("UPLOAD_DIR", "uploads/resumes")
 if not os.path.exists(UPLOAD_DIR):
-    os.makedirs(UPLOAD_DIR)
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+
 
 # ----------------------------------------------------
 # 1. RANK RESUMES + SAVE TO DATABASE
